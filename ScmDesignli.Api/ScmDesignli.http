@@ -1,0 +1,6 @@
+@ScmDesignli_HostAddress = http://localhost:5109
+
+GET {{ScmDesignli_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
