@@ -2,31 +2,7 @@
 
 A RESTful API for employee management built with .NET 8, implementing CQRS pattern, FluentValidation, and MediatR.
 
-## 📋 Requirements Fulfilled
-
-This project fulfills all the technical requirements:
-
-1. ✅ **Created with .NET 8**
-2. ✅ **Employee class** with required fields:
-   - Name
-   - Last Name  
-   - Birthday (Birthdate)
-   - Email (Identity/Unique identifier)
-   - Department (Additional field)
-   - Timestamps (Additional fields)
-3. ✅ **RESTful APIs with CRUD operations**:
-   - Create (POST)
-   - Read (GET - single and list)
-   - Update (PUT)
-   - Delete (DELETE - soft delete)
-4. ✅ **In-Memory storage** - Data is not persisted to database
-5. ✅ **Seed data** - 3 employee records loaded on startup:
-   - Juan Pérez (IT Department)
-   - María García (Human Resources)
-   - Carlos Rodríguez (Finance)
-6. ✅ **Swagger enabled** - Full API documentation available
-
-## ✨ Additional Features
+## ✨ Features
 
 Beyond the basic requirements, this project includes:
 
@@ -410,6 +386,16 @@ ScmDesignli/
 - **Dependency Injection**
 - **Pipeline Behavior** for validation
 
+## 🧪 Unit Tests
+
+The project includes comprehensive unit test coverage for all Commands and Queries. 
+
+📖 **For detailed test documentation, see [ScmDesignli.UnitTest/README.md](ScmDesignli.UnitTest/README.md)**
+
+- **Framework**: xUnit, Moq, FluentAssertions
+- **Coverage**: All Command and Query handlers
+- **Integration**: Tests run automatically during Docker build
+
 ## 🛠️ Technologies
 
 - .NET 8
@@ -418,6 +404,7 @@ ScmDesignli/
 - FluentValidation
 - Swagger/OpenAPI
 - Docker
+- xUnit (Testing)
 
 ## 📝 Notes
 
@@ -461,6 +448,11 @@ ScmDesignli/
 │       ├── DataSeeder.cs            # Seeds the 3 required employees
 │       └── Seeds/
 │           └── EmployeeSeeding.cs   # Seed data definition
+│
+├── ScmDesignli.UnitTest/            # Unit tests - See README.md in this folder
+│   ├── Commands/                    # Command handler tests
+│   ├── Queries/                     # Query handler tests
+│   └── README.md                    # Detailed test documentation
 │
 └── ScmDesignli.Api/                 # API layer - Controllers and config
     ├── Controllers/
