@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MediatR;
 
 namespace ScmDesignli.Application.Commands.Employee.DeleteEmployee
 {
-    public class DeleteEmployeeCommand
+    /// <summary>
+    /// Command to delete an employee
+    /// </summary>
+    public class DeleteEmployeeCommand : IRequest<bool>
     {
+        /// <summary>
+        /// Employee ID to delete
+        /// </summary>
+        /// <example>1</example>
         public int Id { get; set; }
     }
 }

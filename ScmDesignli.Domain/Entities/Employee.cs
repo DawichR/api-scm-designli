@@ -32,7 +32,6 @@ namespace ScmDesignli.Domain.Entities
         /// <example>11/29/2000</example>
         public required DateTime Birthday { get; set; }
 
-
         /// <summary>
         /// Email of employee
         /// </summary>
@@ -40,11 +39,30 @@ namespace ScmDesignli.Domain.Entities
         [EmailAddress]
         public required string Email { get; set; }
 
-
         /// <summary>
-        /// Derpament of employee
+        /// Department of employee
         /// </summary>
         /// <example>IT</example>
         public required Department Department { get; set; }
+
+        /// <summary>
+        /// Indicates if the employee is deleted (soft delete)
+        /// </summary>
+        public bool IsDeleted { get; set; } = false;
+
+        /// <summary>
+        /// Date and time when the employee was deleted
+        /// </summary>
+        public DateTime? DeletedAt { get; set; }
+
+        /// <summary>
+        /// Date and time when the employee was created
+        /// </summary>
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        /// <summary>
+        /// Date and time when the employee was last updated
+        /// </summary>
+        public DateTime? UpdatedAt { get; set; }
     }
 }
