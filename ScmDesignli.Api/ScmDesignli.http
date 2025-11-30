@@ -1,6 +1,229 @@
 @ScmDesignli_HostAddress = http://localhost:5109
 
-GET {{ScmDesignli_HostAddress}}/weatherforecast/
+###############################################
+# Health Check
+###############################################
+
+### Health Check
+GET {{ScmDesignli_HostAddress}}/health
+Accept: application/json
+
+###############################################
+# Employee Management - GET Operations
+###############################################
+
+### Get All Employees
+GET {{ScmDesignli_HostAddress}}/api/employees
 Accept: application/json
 
 ###
+
+### Get Employee by ID (existing)
+GET {{ScmDesignli_HostAddress}}/api/employees/1
+Accept: application/json
+
+###
+
+### Get Employee by ID (non-existent)
+GET {{ScmDesignli_HostAddress}}/api/employees/999
+Accept: application/json
+
+###
+
+### Get Employees Paginated (default: page 1, size 10)
+GET {{ScmDesignli_HostAddress}}/api/employees/paginated
+Accept: application/json
+
+###
+
+### Get Employees Paginated (page 1, size 2)
+GET {{ScmDesignli_HostAddress}}/api/employees/paginated?page=1&pageSize=2
+Accept: application/json
+
+###
+
+### Get Employees Paginated with Search
+GET {{ScmDesignli_HostAddress}}/api/employees/paginated?searchTerm=Juan
+Accept: application/json
+
+###############################################
+# Employee Management - POST Operations
+###############################################
+
+### Create Employee (Valid - IT Department)
+POST {{ScmDesignli_HostAddress}}/api/employees
+Content-Type: application/json
+
+{
+  "name": "Michael",
+  "lastName": "Johnson",
+  "birthday": "1992-08-20T00:00:00Z",
+  "email": "michael.johnson@designli.co",
+  "department": 1
+}
+
+###
+
+### Create Employee (Valid - Finance Department)
+POST {{ScmDesignli_HostAddress}}/api/employees
+Content-Type: application/json
+
+{
+  "name": "Sarah",
+  "lastName": "Williams",
+  "birthday": "1988-03-12T00:00:00Z",
+  "email": "sarah.williams@designli.co",
+  "department": 3
+}
+
+###
+
+### Create Employee (Invalid - Duplicate Email)
+POST {{ScmDesignli_HostAddress}}/api/employees
+Content-Type: application/json
+
+{
+  "name": "Duplicate",
+  "lastName": "User",
+  "birthday": "1990-01-01T00:00:00Z",
+  "email": "juan.perez@designli.co",
+  "department": 1
+}
+
+###
+
+### Create Employee (Invalid - Future Birthday)
+POST {{ScmDesignli_HostAddress}}/api/employees
+Content-Type: application/json
+
+{
+  "name": "Future",
+  "lastName": "Person",
+  "birthday": "2026-01-01T00:00:00Z",
+  "email": "future@designli.co",
+  "department": 1
+}
+
+###
+
+### Create Employee (Invalid - Invalid Email)
+POST {{ScmDesignli_HostAddress}}/api/employees
+Content-Type: application/json
+
+{
+  "name": "Invalid",
+  "lastName": "Email",
+  "birthday": "1990-01-01T00:00:00Z",
+  "email": "not-an-email",
+  "department": 1
+}
+
+###
+
+### Create Employee (Invalid - Invalid Department)
+POST {{ScmDesignli_HostAddress}}/api/employees
+Content-Type: application/json
+
+{
+  "name": "Invalid",
+  "lastName": "Department",
+  "birthday": "1990-01-01T00:00:00Z",
+  "email": "invalid.dept@designli.co",
+  "department": 99
+}
+
+###############################################
+# Employee Management - PUT Operations
+###############################################
+
+### Update Employee (Valid)
+PUT {{ScmDesignli_HostAddress}}/api/employees/1
+Content-Type: application/json
+
+{
+  "name": "Juan Updated",
+  "lastName": "Pérez Updated",
+  "birthday": "1985-03-15T00:00:00Z",
+  "email": "juan.perez.updated@designli.co",
+  "department": 7
+}
+
+###
+
+### Update Employee (Non-existent)
+PUT {{ScmDesignli_HostAddress}}/api/employees/999
+Content-Type: application/json
+
+{
+  "name": "NonExistent",
+  "lastName": "Employee",
+  "birthday": "1990-01-01T00:00:00Z",
+  "email": "nonexistent@designli.co",
+  "department": 1
+}
+
+###
+
+### Update Employee (Invalid - Email already exists)
+PUT {{ScmDesignli_HostAddress}}/api/employees/1
+Content-Type: application/json
+
+{
+  "name": "Juan",
+  "lastName": "Pérez",
+  "birthday": "1985-03-15T00:00:00Z",
+  "email": "maria.garcia@designli.co",
+  "department": 1
+}
+
+###############################################
+# Employee Management - DELETE Operations
+###############################################
+
+### Delete Employee (Soft delete - existing)
+DELETE {{ScmDesignli_HostAddress}}/api/employees/3
+Accept: application/json
+
+###
+
+### Delete Employee (Non-existent)
+DELETE {{ScmDesignli_HostAddress}}/api/employees/999
+Accept: application/json
+
+###############################################
+# Department Reference
+###############################################
+
+# Valid Department Values:
+# 1 = Information Technology
+# 2 = Human Resources
+# 3 = Finance
+# 4 = Operations
+# 5 = Sales
+# 6 = Marketing
+# 7 = Management
+# 8 = Customer Service
+
+###############################################
+# Seeded Employees
+###############################################
+
+# The application comes with 3 pre-loaded employees:
+# 
+# 1. Juan Pérez
+#    - Email: juan.perez@designli.co
+#    - Birthday: 1985-03-15
+#    - Department: IT (1)
+#
+# 2. María García
+#    - Email: maria.garcia@designli.co
+#    - Birthday: 1990-07-22
+#    - Department: Human Resources (2)
+#
+# 3. Carlos Rodríguez
+#    - Email: carlos.rodriguez@designli.co
+#    - Birthday: 1988-11-05
+#    - Department: Finance (3)
+
+###
+
