@@ -1,4 +1,4 @@
-# SCM Designli API - Employee Management System
+# SCM Designli API - Employee Management Api
 
 A RESTful API for employee management built with .NET 8, implementing CQRS pattern, FluentValidation, and MediatR.
 
